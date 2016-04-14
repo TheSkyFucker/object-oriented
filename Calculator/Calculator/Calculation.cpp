@@ -96,7 +96,6 @@ void Calculation::CalculateStringQueue(queue<string> input)
     InitData();
     CheckStringQueue(input);
 
-    
 
 
     //--1 Calculate
@@ -199,6 +198,7 @@ void Calculation::CalculateStringQueue(queue<string> input)
 
     }
     cout << "|======================================================" << endl;
+
 }
 
 

@@ -34,7 +34,7 @@ Function List:
 Scan::Scan(bool debuging)
 {
 
-	this->debuging = debuging;
+    this->debuging = debuging;
 
 }
 
@@ -44,88 +44,88 @@ Scan::Scan(bool debuging)
 void Scan::ToStringQueue(string input)
 {
 
-	//--0 init
-	int i;
-	int lenth = 0;
-	string dai;
+    //--0 init
+    int i;
+    int lenth = 0;
+    string dai;
 
 
-	//--1 change into queue:que
-	for (i = 0; i <input.size(); i++)
-	{
+    //--1 change into queue:que
+    for (i = 0; i <input.size(); i++)
+    {
 
-		//=1 加入数字
-		if ((input[i] >= '0' && input[i] <= '9') || (input[i] == '.'))
-		{
-		    if (lenth == 0) dai = "";
-		    lenth++;
-		    dai += input[i];
-		}
-		else
+        //=1 加入数字
+        if ((input[i] >= '0' && input[i] <= '9') || (input[i] == '.'))
+        {
+            if (lenth == 0) dai = "";
+            lenth++;
+            dai += input[i];
+        }
+        else
 
-		//=2 加入表达符
-		if (input[i] == '(' || input[i] == ')' || input[i]=='+' ||
-		    input[i] == '-' || input[i] == '*' || input[i]=='/' )
-		{
-		    if (lenth)
-		    {
-		        lenth = 0;
-		        que->push(dai);
-		    }
-		    que->push(dai=input[i]);
-		}
-		else
+        //=2 加入表达符
+        if (input[i] == '(' || input[i] == ')' || input[i]=='+' ||
+            input[i] == '-' || input[i] == '*' || input[i]=='/' )
+        {
+            if (lenth)
+            {
+                lenth = 0;
+                que->push(dai);
+        }
+            que->push(dai=input[i]);
+        }
+        else
 
-		//=3 存在其他字符
-		{
-		    errorcode |= ERROR_CODE_OTHERS;
-		}
+        //=3 存在其他字符
+        {
+            errorcode |= ERROR_CODE_OTHERS;
+        }
 
-		//=4 括号匹配
-		kuohao += input[i] == '(';
-		kuohao -= input[i] == ')';
-		if (kuohao<0) errorcode |= ERROR_CODE_KUOHAO;
+        //=4 括号匹配
+        kuohao += input[i] == '(';
+        kuohao -= input[i] == ')';
+        if (kuohao<0) errorcode |= ERROR_CODE_KUOHAO;
 
-		//=5 检查实数长度
-		if (lenth > 10) errorcode |= ERROR_CODE_RANGE;
+        //=5 检查实数长度
+        if (lenth > 10) errorcode |= ERROR_CODE_RANGE;
 		
-	}
+    }
 
 
-	if (lenth) que->push(dai);
-	if (kuohao != 0) errorcode |= ERROR_CODE_KUOHAO;
+    if (lenth) que->push(dai);
+    if (kuohao != 0) errorcode |= ERROR_CODE_KUOHAO;
 
 
 	//--2 return result
-	if (errorcode)
-	{
+    if (errorcode)
+    {
 
-		i=0;
-		cout << endl << "错误信息" << endl;
-		if (errorcode & ERROR_CODE_KUOHAO)
-			cout << "    错误" << ++i << "： 表达式括号不匹配" << endl;
-		if (errorcode & ERROR_CODE_RANGE)
-			cout << "    错误" << ++i << "： 输入存在范围错误，实数超过10位（包括小数点）" << endl;
-		if (errorcode & ERROR_CODE_OTHERS)
-			cout << "    错误" << ++i << "： 存在 + , - , * , / , ( , ) , . , 0~9 外的字符" << endl;
-		cout << endl;
-		cout << "------------------------------------------------------" << endl;
+	    i=0;
+        cout << endl << "错误信息" << endl;
+        if (errorcode & ERROR_CODE_KUOHAO)
+            cout << "    错误" << ++i << "： 表达式括号不匹配" << endl;
+        if (errorcode & ERROR_CODE_RANGE)
+            cout << "    错误" << ++i << "： 输入存在范围错误，实数超过10位（包括小数点）" << endl;
+        if (errorcode & ERROR_CODE_OTHERS)
+            cout << "    错误" << ++i << "： 存在 + , - , * , / , ( , ) , . , 0~9 外的字符" << endl;
+        cout << endl;
+    cout << "------------------------------------------------------" << endl;
 
-	}	
-	else
-	{
-		if (debuging)
-		{
-			if (i >= input.size())
-			{
-				cout << "MESSAGE : Change compeleted!" << endl;
-			}
-			else
-			{
-				cout << "MESSAGE : Change failed!" << endl;
-			}
-		}
-	}
+    }	
+    else
+    {
+        if (debuging)
+        {
+            if (i >= input.size())
+            {
+                cout << "MESSAGE : Change compeleted!" << endl;
+            }
+            else
+            {
+                cout << "MESSAGE : Change failed!" << endl;
+            }
+        }
+    }
 }
 
 
@@ -134,15 +134,15 @@ void Scan::ToStringQueue(string input)
 queue<string> *Scan::GetStringQueue()
 {
 
-	if (!errorcode)
-	{
-		return que;
-	}
-	else
-	{
-		return NULL;
-	}
-
+    if (!errorcode)
+    {
+        return que;
+    }
+    else
+    {
+        return NULL;
+    }
+    
 }
 
 
@@ -151,7 +151,7 @@ queue<string> *Scan::GetStringQueue()
 void Scan::ClearErrorCode()
 {
 
-	Scan::errorcode = 0;
+    Scan::errorcode = 0;
 
 }
 
@@ -161,7 +161,7 @@ void Scan::ClearErrorCode()
 void Scan::ClearStringQueue()
 {
 
-	kuohao = 0;
-	for (; !que->empty(); que->pop());
+    kuohao = 0;
+    for (; !que->empty(); que->pop());
 
 }

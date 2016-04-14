@@ -14,15 +14,15 @@ class Calculation
 
 private:
 
-    int errorcode;
+    int errorcode;  //错误码
     bool debuging;  //存储错误信息
 
-    int lv[300];
+    int lv[300];    //预设优先级数组
 
 
-    stack<int> *level = new stack<int>;
-    stack<char> *oper = new stack<char>;
-    stack<double> *numb = new stack<double>;
+    stack<int> *level = new stack<int>;         //优先级栈
+    stack<char> *oper = new stack<char>;        //运算符栈
+    stack<double> *numb = new stack<double>;    //浮点数栈
 
     queue<string> *tmp = new queue<string>;
 
