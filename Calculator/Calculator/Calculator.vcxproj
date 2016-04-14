@@ -78,10 +78,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Calculation.h" />
     <ClInclude Include="Print.h" />
     <ClInclude Include="Scan.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Print.cpp" />
     <ClCompile Include="Scan.cpp" />

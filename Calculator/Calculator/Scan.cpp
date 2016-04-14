@@ -1,42 +1,49 @@
 /************************************************************
 
-FileName	:	Scan.cpp
+FileName    :   Scan.cpp
 
-Author		:	TheSkuFucker
-Version		:	1
-Date		:	2016.2.16
+Author      :   TheSkyFucker
+Version     :   2
+Date        :   2016.4.14
 
 Description:
-	定义Scan类中的类方法；
+    定义Scan类中的类方法；
 
 Function List:
-	void ToStringQueue(string input)	将给定的字符串拆解进队列；
-	queue<string> *GetStringQueue()		获取存储拆解结果的队列；
-	void ClearErrorCode()				清除错误信息；
-	void ClearStringQueue()				清除队列内容；
+    void ToStringQueue(string input)    将给定的字符串拆解进队列；
+    queue<string> *GetStringQueue()     获取存储拆解结果的队列；
+    void ClearErrorCode()               清除错误信息；
+    void ClearStringQueue()             清除队列内容；
 
 ***********************************************************/
+
 
 //====0 头文件包含部分
 #include "Scan.h"
 
 
+
 //====0 Define Error Code Table
-#define ERROR_CODE_RANGE 1
-#define ERROR_CODE_KUOHAO 2
-#define ERROR_CODE_OTHERS 4
+#define ERROR_CODE_RANGE    1
+#define ERROR_CODE_KUOHAO   2
+#define ERROR_CODE_OTHERS   4
+
 
 
 //====0 Structure
 Scan::Scan(bool debuging)
 {
+
 	this->debuging = debuging;
+
 }
+
 
 
 //====1 ToStringQueue
 void Scan::ToStringQueue(string input)
 {
+
 	//--0 init
 	int i;
 	int lenth = 0;
@@ -46,29 +53,32 @@ void Scan::ToStringQueue(string input)
 	//--1 change into queue:que
 	for (i = 0; i <input.size(); i++)
 	{
+
 		//=1 加入数字
 		if ((input[i] >= '0' && input[i] <= '9') || (input[i] == '.'))
 		{
-			if (lenth == 0) dai = "";
-			lenth++;
-			dai += input[i];
+		    if (lenth == 0) dai = "";
+		    lenth++;
+		    dai += input[i];
 		}
 		else
+
 		//=2 加入表达符
 		if (input[i] == '(' || input[i] == ')' || input[i]=='+' ||
-			input[i] == '-' || input[i] == '*' || input[i]=='/' )
+		    input[i] == '-' || input[i] == '*' || input[i]=='/' )
 		{
-			if (lenth)
-			{
-				lenth = 0;
-				que->push(dai);
-			}
-			que->push(dai=input[i]);
+		    if (lenth)
+		    {
+		        lenth = 0;
+		        que->push(dai);
+		    }
+		    que->push(dai=input[i]);
 		}
 		else
+
 		//=3 存在其他字符
 		{
-			errorcode |= ERROR_CODE_OTHERS;
+		    errorcode |= ERROR_CODE_OTHERS;
 		}
 
 		//=4 括号匹配
@@ -119,9 +129,11 @@ void Scan::ToStringQueue(string input)
 }
 
 
+
 //=====2 GetStringQueue
 queue<string> *Scan::GetStringQueue()
 {
+
 	if (!errorcode)
 	{
 		return que;
@@ -130,19 +142,26 @@ queue<string> *Scan::GetStringQueue()
 	{
 		return NULL;
 	}
+
 }
+
 
 
 //=====3 ClearErrorCode
 void Scan::ClearErrorCode()
 {
+
 	Scan::errorcode = 0;
+
 }
+
 
 
 //====4 ClearStringQueue
 void Scan::ClearStringQueue()
 {
+
 	kuohao = 0;
 	for (; !que->empty(); que->pop());
+
 }
